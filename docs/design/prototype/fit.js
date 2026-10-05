@@ -4,6 +4,7 @@
   function fit() {
     document.querySelectorAll('.fit').forEach(function (el) {
       var box = el.parentElement;
+      if (!box.clientWidth) return; // inside a subscreen that isn't showing
       var n = el.textContent.trim().length;
       var stretch = el.dataset.stretch || Math.max(52, Math.min(140, 165 - n * 6.5));
       var max = +el.dataset.max || 999;
@@ -15,4 +16,5 @@
   }
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
   window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', fit);
 })();
