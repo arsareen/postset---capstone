@@ -64,7 +64,7 @@ Two pieces trace to no user story: the **shows list** and **creating a show**. T
 ## 6. Data model (MVP)
 
 ```
-shows          id, slug, artist, festival, date_local,
+shows          id, slug, artist, venue (club or festival), date_local,
                created_by → auth.users
 setlist_songs  id, show_id → shows, title, normalized_title, position
                unique (show_id, normalized_title)
