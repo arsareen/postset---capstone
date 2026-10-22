@@ -96,3 +96,12 @@
 ## MVP Slice
 
 **Stories 1, 6, and 7.** A user uploads a clip, tags it to a song on a known setlist, and any other user can browse that setlist and watch every available angle of any song — including ones they never recorded. You could screen-record someone doing this start to finish without saying "imagine it saves."
+
+## Screen expectations (written before prototyping)
+
+- Shows list (home). My events, each one tappable to open it. No story asks for this but I need it to get around.
+- Event page. Story 7. One show's setlist in order, each song a row, tap to open that song.
+- Song page. Stories 1, 3, 6, 8. Open a song and see every uploaded clip as different angles I can pick from. The core screen.
+- Upload and tag. Stories 2, 5. Add a clip, tag it to a song, or tag it as a standalone moment.
+
+Story 4 is in the Won't band so it sits out.
