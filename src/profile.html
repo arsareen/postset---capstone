@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile | PostSet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="state default" id="view">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen">
+  <div class="profile-head">
+    <span class="mono">Your profile</span>
+    <a class="icon-btn glass" href="#edit" aria-label="Edit profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 00-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></a>
+  </div>
+
+  <!-- Filled in by profile.js from what you saved. -->
+  <div id="profile-set" hidden>
+    <div class="profile-id">
+      <div class="avatar xl" id="view-avatar"></div>
+      <h1 class="h-lg" id="view-name"></h1>
+      <span class="handle-text" id="view-handle"></span>
+      <span class="mono" id="view-city"></span>
+    </div>
+    <p class="profile-bio" id="view-bio"></p>
+    <div class="chips-row" id="view-artists"></div>
+    <div class="profile-stats">
+      <div class="stats" id="view-stats"></div>
+    </div>
+    <div class="profile-actions">
+      <a class="btn ghost sm" href="#edit">Edit profile</a>
+    </div>
+    <div class="section-label"><span class="mono">Your shows</span><span class="mono" id="view-show-count"></span></div>
+    <ul class="results" id="view-shows"></ul>
+  </div>
+
+  <div id="profile-empty" class="empty-wrap" hidden>
+    <div class="empty-box">
+      <div class="ring">☺</div>
+      <b class="h-sm">Set up your profile</b>
+      <p>Add your name, a handle and a photo so people know whose angle they're watching.</p>
+      <a class="btn sm" href="#edit">Create profile</a>
+    </div>
+  </div>
+</main>
+<nav class="tabbar" aria-label="Main"><a href="index.html" aria-label="Shows"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A1.5 1.5 0 015.5 6h13A1.5 1.5 0 0120 7.5V10a2 2 0 000 4v2.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 16.5V14a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/></svg></a><a href="search.html" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a><a href="add.html#record" class="rec" aria-label="Record"><span></span></a><a href="add.html" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></a><a href="profile.html" aria-label="Profile" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg></a></nav>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>Profile</h1>
+  <p>Who you are on PostSet: your name, handle, home city, a short bio and the artists you go out for. Below it, the shows you were at.</p>
+  <div class="substates"><a href="#view" aria-current="page">View</a><a href="#edit">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-none"><b>NO STORY</b><span>Accounts (PRD §4): each clip has an owner. Needs its own backlog story.</span></li>
+  </ul>
+  <p>Saved on this device only for now. Week 10 moves it into the database, and Week 12 ties it to your sign-in.</p>
+</aside>
+</div>
+</section>
+
+<section class="state" id="edit">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen modal">
+  <div class="flow-head">
+    <a href="#view">Cancel</a>
+    <span class="mono lit">Edit profile</span>
+    <span style="width:44px"></span>
+  </div>
+
+  <form id="profile-form" class="form" novalidate style="padding-top:22px">
+    <div class="form-field">
+      <span class="label"><span class="mono">Photo</span></span>
+      <div class="photo-field">
+        <div class="avatar xl" id="edit-avatar"></div>
+        <div class="btns">
+          <span class="btn ghost sm file-btn">Choose photo<input id="photo" type="file" accept="image/*" aria-label="Choose a profile photo"></span>
+          <button class="btn ghost sm" id="photo-remove" type="button" hidden>Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-field" data-field="name">
+      <label for="name"><span class="mono">Display name</span><span class="mono" data-count="name"></span></label>
+      <input id="name" name="name" maxlength="40" placeholder="Your name" autocomplete="name">
+      <span class="err" hidden></span>
+    </div>
+
+    <div class="form-field" data-field="handle">
+      <label for="handle"><span class="mono">Handle</span></label>
+      <div class="handle-input"><span>@</span><input id="handle" name="handle" maxlength="20" placeholder="yourname" autocapitalize="off" autocomplete="username" spellcheck="false"></div>
+      <span class="hint">3–20 characters: lowercase letters, numbers, dots and underscores.</span>
+      <span class="err" hidden></span>
+    </div>
+
+    <div class="form-field" data-field="city">
+      <label for="city"><span class="mono">Home city</span></label>
+      <input id="city" name="city" maxlength="40" placeholder="Syracuse, NY" autocomplete="address-level2">
+      <span class="err" hidden></span>
+    </div>
+
+    <div class="form-field" data-field="bio">
+      <label for="bio"><span class="mono">Bio</span><span class="mono" data-count="bio"></span></label>
+      <textarea id="bio" name="bio" maxlength="160" placeholder="Front left for every drop."></textarea>
+      <span class="err" hidden></span>
+    </div>
+
+    <div class="form-field" data-field="artists">
+      <label for="artists"><span class="mono">Favorite artists</span></label>
+      <input id="artists" name="artists" placeholder="Mira Vale, Okari, Lune Parade" autocomplete="off">
+      <span class="hint">Separate with commas. Up to 8.</span>
+      <span class="err" hidden></span>
+    </div>
+
+    <p class="form-error" id="form-error" hidden></p>
+
+    <div class="foot" style="padding-left:0;padding-right:0">
+      <button class="btn" type="submit">Save profile</button>
+    </div>
+  </form>
+</main>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>Edit profile</h1>
+  <p>Display name and handle are required; everything else is optional. Mistakes show under the field they belong to, and nothing saves until they're fixed.</p>
+  <div class="substates"><a href="#view">View</a><a href="#edit" aria-current="page">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-none"><b>NO STORY</b><span>Accounts (PRD §4). Needs its own backlog story.</span></li>
+  </ul>
+</aside>
+</div>
+</section>
+
+<script src="data/sample.js"></script>
+<script src="profile.js"></script>
+</body>
+</html>
