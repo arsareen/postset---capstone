@@ -84,12 +84,35 @@
 
 ---
 
+**Story 9.** As a viewer, I want to search for a specific song or event, so I can jump straight to what I'm looking for instead of browsing through everything, the way I currently dig blindly through YouTube and hashtags.
+
+**Acceptance criteria**
+- [ ] Given clips exist for a song, when I search that song's name, then matching songs appear in the results.
+- [ ] Given I search an event name, when the results load, then I can open that event and browse its songs.
+- [ ] Given nothing matches what I typed, when the results load, then I see a clear "nothing matches" message rather than a blank screen.
+
+**Evidence.** Interview Q3, Interviewee B — "if I didn't record then I would go back on YouTube to see recordings of it," which means searching blindly by song name. In the CP-M2 PRD as a Should; added here so the backlog matches it.
+
+---
+
+**Story 10.** As an uploader, I want a profile with my name, handle and photo, so people watching my angle know whose clip it is, and I can see the shows I've been to in one place.
+
+**Acceptance criteria**
+- [ ] Given I haven't set up a profile, when I open Profile, then I'm prompted to create one rather than shown a blank screen.
+- [ ] Given I enter a display name and a valid handle, when I save, then my profile shows them, and they're still there when I come back to the app.
+- [ ] Given I leave the display name or handle empty, or type a handle with spaces or symbols, when I save, then nothing saves and I see what to fix under that field.
+- [ ] Given I've been to shows, when I open my profile, then I see those shows listed and can open each one.
+
+**Evidence.** CP-M2 PRD §4 — "uploading requires a simple login so each clip has an owner"; a profile is how that owner shows up to everyone else. Not from the interviews: this came up during the build. Worth asking in the next round whether people care who filmed an angle.
+
+---
+
 ## MoSCoW
 
 | Band | Stories | Reasoning |
 |---|---|---|
 | **Must** | 1, 6, 7 | These are the product. A user uploads a clip, it's organized by setlist (7), anyone can open a song and watch it (1), and if multiple people uploaded the same song you see all of them (6). Without any one of these, the app doesn't do its core job. |
-| **Should** | 2, 3 | Both came from strong interview evidence — selective recording (2) and attendees pooling clips (3) — but the product still functions without them on day one. |
+| **Should** | 2, 3, 9, 10 | Selective recording (2) and attendees pooling clips (3) came from strong interview evidence. Search (9) and profiles (10) make the app easier to get around and show whose clip is whose. The product still does its core job without any of them on day one. |
 | **Could** | 5, 8 | Moment tagging (5) and finding a better angle than yours (8) are nice once the library has volume. Neither is load-bearing for a first demo. |
 | **Won't** | 4 | Live coverage signals ("someone's already recording this") require real-time data and critical mass to be meaningful. Showing "0 people recording" at launch actively undermines confidence rather than building it. Revisit once there's enough user activity for the signal to be trustworthy. |
 
@@ -105,3 +128,9 @@
 - Upload and tag. Stories 2, 5. Add a clip, tag it to a song, or tag it as a standalone moment.
 
 Story 4 is in the Won't band so it sits out.
+
+## Screens added during the build
+
+- Search. Story 9. One box for shows and songs, narrowing as you type.
+- Profile. Story 10. View and edit your name, handle, photo, city, bio and favorite artists; your shows underneath. Saved on the device until Week 10.
+- Tab bar on every screen: Shows, Search, Record, Add, Profile.
