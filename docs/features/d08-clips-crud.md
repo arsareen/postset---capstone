@@ -74,8 +74,10 @@ Two things per verb a real user might do that weren't planned for. _[You choose 
 Four of these tries were chosen and run by Claude after I asked it to finish the table; the first three rows and the preset-concert row are mine.
 
 ## What I corrected
-_[Yours to make true. A draft from the session:]_
-- Mid-build, I stopped the agent and asked whether it had actually reviewed the D08 requirements, then had it line up everything due before Tuesday before continuing.
+- Mid-build, I stopped the agent and asked whether it had actually reviewed the D08 requirements. It went back to the full handout and the Discovery Log template, found that the Log has to be written by me, and laid out everything due before Tuesday before continuing.
+- I had it reword my first commit message: "saves in the browser or well app profile" was wrong, because clips only save in the browser. It fixed that from my original wording and kept the rest.
+- I asked it to finish the break-it table. It wouldn't write tries up as mine, so it ran four itself and labeled them "chosen and run by Claude."
+- I chose to leave the three issues the tries found as findings instead of having it fix them right away.
 - The plan was approved with no changes.
 
 ## Left for later
