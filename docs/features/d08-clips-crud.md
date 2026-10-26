@@ -8,7 +8,7 @@ Written before anything was built:
 - **Update:** change one clip's tag from "ID" to a real song; confirm it now shows under the new song and no longer under "ID".
 - **Delete:** remove a clip; confirm it's gone from its song's list and the others are untouched.
 
-**Where the data lives:** in the browser (localStorage, key `postset.clips`). Only the video's filename is saved, not the video itself. Why: _[yours to write]_
+**Where the data lives:** in the browser (localStorage, key `postset.clips`). Only the video's filename is saved, not the video itself. Why: Browser storage is very simple to make edits with directly with your device. It also serves mock data usually which makes commits and changes quite low risk and easy to try new ideas.
 
 ## Checks → results
 
@@ -65,11 +65,13 @@ Two things per verb a real user might do that weren't planned for. _[You choose 
 | Read | Added a clip, then tried to watch it | Nothing plays, and there's no play button. Only the file's name is saved this week, not the video, so a real user would expect to watch and can't. | No |
 | Update | Edited a clip and changed its show (venue), not just its song | The clip moved: at the new show it's listed as "Ferris" under "Not on the setlist", and the old show's Ferris count dropped to 0. The app never asked whether that song was actually played there. | No |
 | Delete | Deleted a clip | Two taps (Delete, then "Yes, delete"). There's no undo once it's gone. | No |
-| Create | _[one more off-plan try]_ | | |
-| Create | _[one more off-plan try]_ | | |
-| Read | _[one more off-plan try]_ | | |
-| Update | _[one more off-plan try]_ | | |
-| Delete | _[one more off-plan try]_ | | |
+| Create | Went to one of the preset concerts (Shows → a concert) to add clips to it | Couldn't. The concert pages are still prototype screens, and their Add buttons open the old prototype flow, which saves nothing. Clips can only be added from Profile → Your clips. The plan only linked the new screen from Profile. | No |
+| Create | _(chosen and run by Claude)_ Added the same video twice to the same song | Both saved without a warning; Ferris listed `IMG_0100.MOV` twice. | No |
+| Read | _(chosen and run by Claude)_ Tagged a clip "FERRIS!!" | It landed with the other Ferris clips under a single Ferris row, as the song-matching rule intends. | No |
+| Update | _(chosen and run by Claude)_ Cleared the song name and saved | Blocked with "Tag a song, or type ID if nobody knows it yet."; the clip kept its song. | No |
+| Delete | _(chosen and run by Claude)_ Deleted the only clip tagged ID | It said "Deleted IMG_0102.MOV.", but the page then read "Song not found", and the ID row disappeared from the show's list. | No |
+
+Four of these tries were chosen and run by Claude after I asked it to finish the table; the first three rows and the preset-concert row are mine.
 
 ## What I corrected
 _[Yours to make true. A draft from the session:]_
@@ -78,5 +80,13 @@ _[Yours to make true. A draft from the session:]_
 
 ## Left for later
 - `TODO(W10)`: clips move from the browser into Supabase (Workshop 4, Oct 29); `src/clips-store.js` is the only file that should need to change.
-- Clips have no owner yet, so anyone using this browser can edit or delete any clip. Login arrives in Week 12. _[Note every moment you wanted login: D10 asks for the list.]_
+- Clips have no owner yet, so anyone using this browser can edit or delete any clip. Login arrives in Week 12.
+- Moments I wanted login (for D10):
+  - I want to log in to view different events around the world.
+  - I also wanted to log in so I can see my old memories of concerts which I went to with other people.
+  - I also wanted to show people where I can keep it stashed.
 - The video itself isn't stored or played; only its filename is.
+- Found by trying to break it, left as findings for now:
+  - The concert pages' Add buttons still open the prototype flow; adding a clip only works from Profile → Your clips.
+  - The same video can be added to the same song twice, with no warning.
+  - Deleting the last clip of a song that isn't on the setlist (like ID) leaves the page saying "Song not found".
