@@ -58,7 +58,7 @@ PASS  Delete — the clip is gone from its song and every other clip is untouche
 The first run also passed all four checks, but the script itself crashed at the end: it deleted its temporary Chrome folder while Chrome was still closing. It now waits for Chrome to exit first.
 
 ## Trying to break it
-Two things per verb a real user might do that weren't planned for. _[You choose these; then we run them and fill in the table.]_
+Two things per verb a real user might do that weren't planned for.
 
 | Verb | What I tried | What happened | Did I have to correct the agent? |
 |---|---|---|---|
