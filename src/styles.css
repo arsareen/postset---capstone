@@ -551,6 +551,31 @@ body:not(:has(.state:target)) .state.default { display: block; }
 .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .form-error { margin: 0 20px; font-size: 14px; font-weight: 600; color: var(--accent); }
 
+/* ---------- clips ---------- */
+.show-chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 20px 18px; }
+.show-chips::-webkit-scrollbar { display: none; }
+.show-chips a { flex: none; height: 34px; padding: 0 14px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; background: var(--surface); box-shadow: inset 0 0 0 1px var(--border); color: var(--text-2); }
+.show-chips a[aria-current] { background: var(--text); color: var(--bg); box-shadow: none; }
+.song-head { padding: 18px 20px 14px; display: grid; gap: 8px; }
+.song-head .h-lg { word-break: break-word; }
+.status-line { margin: 0 20px 10px; font-size: 14px; font-weight: 600; color: var(--text); }
+.clip-row { display: grid; grid-template-columns: 48px 1fr auto; gap: 14px; align-items: center; padding: 8px 12px; border-radius: var(--r-md); }
+.clip-row .ft { height: 58px; border-radius: 10px; }
+.clip-row b { display: block; font-size: 15px; margin-bottom: 3px; overflow-wrap: anywhere; }
+.confirm-row { grid-template-columns: 1fr auto; min-height: 74px; background: var(--accent-dim); box-shadow: inset 0 0 0 1px rgba(255, 45, 120, .35); font-size: 14px; }
+.row-actions { display: flex; gap: 6px; }
+.row-actions a, .row-actions button { height: 32px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; box-shadow: inset 0 0 0 1px var(--border-lit); }
+.row-actions .danger { color: var(--accent); box-shadow: inset 0 0 0 1px rgba(255, 45, 120, .45); }
+.row-actions .danger.solid { background: var(--accent); color: #fff; box-shadow: none; }
+.form-field select {
+  width: 100%; height: 48px; padding: 0 14px; border-radius: 12px; border: 0;
+  background: var(--surface-2); color: var(--text); font: inherit; font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--border); outline: none;
+}
+.form-field select:focus { box-shadow: inset 0 0 0 1.5px var(--text); }
+.form-field.invalid select { box-shadow: inset 0 0 0 1.5px var(--accent); }
+.chosen-file { font-size: 14px; color: var(--text-2); overflow-wrap: anywhere; }
+
 /* ---------- screens index ---------- */
 .index-body { padding: 56px 32px 80px; }
 .index { max-width: 1040px; margin: 0 auto; }

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clips | PostSet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="state default" id="songs">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen">
+  <div class="profile-head">
+    <div>
+      <span class="mono">Clips by song</span>
+      <h1 class="h-lg" style="margin-top:6px">Clips</h1>
+    </div>
+    <a class="btn sm" id="songs-add" href="#add">+ Add clip</a>
+  </div>
+  <nav class="show-chips" id="show-chips" aria-label="Shows" style="padding-top:18px"></nav>
+  <div class="section-label"><span class="mono" id="songs-show"></span><span class="mono" id="songs-total"></span></div>
+  <ul class="setlist" id="songs-list"></ul>
+  <div id="songs-extra"></div>
+</main>
+<nav class="tabbar" aria-label="Main"><a href="index.html" aria-label="Shows"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A1.5 1.5 0 015.5 6h13A1.5 1.5 0 0120 7.5V10a2 2 0 000 4v2.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 16.5V14a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/></svg></a><a href="search.html" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a><a href="add.html#record" class="rec" aria-label="Record"><span></span></a><a href="add.html" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></a><a href="profile.html" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg></a></nav>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>Clips</h1>
+  <p>Pick a show and see its setlist with how many clips each song has. Songs tagged at upload that aren't on the setlist, like ID, join the end.</p>
+  <div class="substates"><a href="#songs" aria-current="page">Songs</a><a href="#song">Song</a><a href="#add">Add</a><a href="#edit">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-must"><b>STORY 7</b><span>Clips grouped by song, in setlist order.</span></li>
+    <li class="band-none"><b>D08</b><span>Read: the clip counts come from what's actually saved.</span></li>
+  </ul>
+  <p>Saved on this device for now. Workshop 4 moves it into Supabase.</p>
+</aside>
+</div>
+</section>
+
+<section class="state" id="song">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen">
+  <div class="flow-head">
+    <a id="song-back" href="#songs">‹ Songs</a>
+    <span class="mono lit" id="song-show"></span>
+    <a id="song-add" href="#add">+ Add</a>
+  </div>
+  <div class="song-head">
+    <h1 class="h-lg" id="song-title"></h1>
+    <span class="mono" id="song-meta"></span>
+  </div>
+  <p class="status-line" id="song-status" aria-live="polite" hidden></p>
+  <ul class="results" id="song-clips"></ul>
+  <div id="song-empty" class="empty-wrap" style="padding-top:8px" hidden>
+    <div class="empty-box">
+      <div class="ring">+</div>
+      <b class="h-sm" id="song-empty-title"></b>
+      <p>If you filmed it, add your clip and it shows up here.</p>
+      <a class="btn sm" id="song-empty-add" href="#add">Add a clip</a>
+    </div>
+  </div>
+</main>
+<nav class="tabbar" aria-label="Main"><a href="index.html" aria-label="Shows"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A1.5 1.5 0 015.5 6h13A1.5 1.5 0 0120 7.5V10a2 2 0 000 4v2.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 16.5V14a2 2 0 000-4z"/><path d="M14 6v12" stroke-dasharray="2 2.5"/></svg></a><a href="search.html" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a><a href="add.html#record" class="rec" aria-label="Record"><span></span></a><a href="add.html" aria-label="Add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></a><a href="profile.html" aria-label="Profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></svg></a></nav>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>One song</h1>
+  <p>Every clip tagged to this song at this show, oldest first. Edit retags a clip; Delete asks first, right in the row.</p>
+  <div class="substates"><a href="#songs">Songs</a><a href="#song" aria-current="page">Song</a><a href="#add">Add</a><a href="#edit">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-must"><b>STORY 1</b><span>Open a song and see its clips, or a clear "No clips yet".</span></li>
+    <li class="band-none"><b>D08</b><span>Read, and the way into Update and Delete.</span></li>
+  </ul>
+</aside>
+</div>
+</section>
+
+<section class="state" id="add">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen modal">
+  <div class="flow-head">
+    <a id="add-cancel" href="#songs">Cancel</a>
+    <span class="mono lit">Add a clip</span>
+    <span style="width:44px"></span>
+  </div>
+  <div id="add-form-slot"></div>
+</main>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>Add a clip</h1>
+  <p>Which show, which song, which video. Type a song that isn't on the setlist and it joins the end. Don't know the song? Tag it ID and fix it later.</p>
+  <div class="substates"><a href="#songs">Songs</a><a href="#song">Song</a><a href="#add" aria-current="page">Add</a><a href="#edit">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-none"><b>PRD FR1–2</b><span>Upload a clip and tag it to a song.</span></li>
+    <li class="band-none"><b>D08</b><span>Create. Only the file's name is saved this week, not the video.</span></li>
+  </ul>
+</aside>
+</div>
+</section>
+
+<section class="state" id="edit">
+<div class="board">
+<div class="phone">
+<div class="statusbar" aria-hidden="true"><span>9:41</span><i>●●● ▮</i></div>
+<main class="screen modal">
+  <div class="flow-head">
+    <a id="edit-cancel" href="#songs">Cancel</a>
+    <span class="mono lit">Edit clip</span>
+    <span style="width:44px"></span>
+  </div>
+  <div id="edit-form-slot"></div>
+</main>
+</div>
+<aside class="note">
+  <a class="note-home" href="screens.html">All screens</a>
+  <h1>Edit a clip</h1>
+  <p>Change the song, the show or the video. Retag an ID once you know the track, and the clip moves to that song.</p>
+  <div class="substates"><a href="#songs">Songs</a><a href="#song">Song</a><a href="#add">Add</a><a href="#edit" aria-current="page">Edit</a></div>
+  <h2>What it covers</h2>
+  <ul class="stories">
+    <li class="band-none"><b>D08</b><span>Update.</span></li>
+  </ul>
+</aside>
+</div>
+</section>
+
+<script src="data/sample.js"></script>
+<script src="song-key.js"></script>
+<script src="clips-store.js"></script>
+<script src="clips.js"></script>
+</body>
+</html>

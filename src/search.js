@@ -7,14 +7,7 @@
   var clear = document.getElementById('clear');
   var results = document.getElementById('results');
 
-  // Same idea as the song-title key in docs/decisions/0002: case, apostrophes
-  // and punctuation don't count, so "afterglow" finds "Afterglow Season".
-  function key(s) {
-    return String(s).normalize('NFKC').toLowerCase()
-      .replace(/['’]/g, '')
-      .replace(/[^a-z0-9\s]+/g, ' ')
-      .replace(/\s+/g, ' ').trim();
-  }
+  var key = window.songKey; // song-key.js
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
