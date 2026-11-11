@@ -622,3 +622,65 @@ body:not(:has(.state:target)) .state.default { display: block; }
 .screen.modal { padding-bottom: 0; }
 .live-card .who-here { left: auto; }
 .map .zone .mono { left: auto; right: 0; }
+
+/* ---------- the working app ----------
+   Real screens use .phone.app: full screen on a phone, a centred column on a
+   laptop. No status bar or review notes, so the tops sit higher. */
+.app-body { background: var(--bg); }
+.phone.app { width: 100%; max-width: 480px; height: 100vh; height: 100dvh; margin: 0 auto; border-radius: 0; box-shadow: 0 0 0 1px var(--border); }
+.app .home-head, .app .search-head, .app .profile-head, .app .add-head { padding-top: calc(28px + env(safe-area-inset-top)); }
+.app .flow-head { padding-top: calc(22px + env(safe-area-inset-top)); }
+.app .hero-top { top: calc(18px + env(safe-area-inset-top)); }
+.app .imm-top { top: calc(16px + env(safe-area-inset-top)); }
+.app .angle-badge { top: calc(76px + env(safe-area-inset-top)); }
+.app .empty-wrap { padding-top: calc(22px + env(safe-area-inset-top)); }
+.app .added-head { padding-top: calc(40px + env(safe-area-inset-top)); }
+
+.link-btn { background: none; border: 0; padding: 0; font: inherit; color: var(--text); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.link-btn:hover { color: var(--accent); }
+.loading { padding: 28px 0; text-align: center; }
+.status-line { margin: 0 20px 10px; font-size: 14px; font-weight: 600; color: var(--text); }
+.fade-in { animation: fade .25s ease-out both; }
+
+/* shows */
+.show-card .tag { margin-bottom: 8px; }
+.show-card .stack i { width: 30px; height: 42px; }
+.empty-card { margin: 0 12px; }
+
+/* song: real video under the immersive overlay */
+.imm { background: #000; }
+.imm .ambient { opacity: .45; }
+.imm video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 1; }
+.imm::after { z-index: 2; pointer-events: none; }
+.imm-tap { position: absolute; inset: 0; z-index: 2; }
+.imm-top .icon-btn, .rail button { flex: none; }
+.rail button { display: grid; justify-items: center; gap: 4px; font-size: 12px; font-weight: 700; }
+.paused-mark { position: absolute; z-index: 3; top: 50%; left: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; display: grid; place-items: center; pointer-events: none; }
+.paused-mark svg { width: 30px; height: 30px; margin-left: 4px; }
+.progress i { width: 0; transition: width .25s linear; }
+.strip { overflow-x: auto; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip .ft .dur { font-size: 9px; right: 4px; bottom: 4px; padding: 1px 4px; }
+.mine-actions { position: absolute; z-index: 3; right: 14px; top: calc(76px + env(safe-area-inset-top)); display: flex; gap: 6px; }
+.mine-actions a, .mine-actions button { height: 30px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 700; }
+.mine-actions .danger { color: #fff; background: var(--accent); }
+.confirm-bar { position: absolute; z-index: 4; left: 14px; right: 14px; top: calc(76px + env(safe-area-inset-top)); padding: 14px 16px; border-radius: var(--r-md); display: grid; gap: 12px; }
+.confirm-bar .row-actions { justify-content: flex-end; }
+
+/* add */
+.picked video { display: none; }
+.choice { width: 100%; text-align: left; }
+.choice .mono.pink { color: var(--accent); }
+.choice.pinksel[aria-checked="true"] .mono.pink { color: #fff; }
+.search input { font-weight: 600; }
+.new-tag .input input { flex: 1; min-width: 0; height: 100%; background: none; border: 0; outline: none; color: var(--text); font: inherit; font-weight: 600; }
+.form-error { margin: 10px 20px 0; }
+.err-line { padding: 0 20px 8px; font-size: 13px; font-weight: 600; color: var(--accent); }
+.upload-bar { height: 3px; border-radius: 2px; background: var(--border); margin: 0 20px 12px; overflow: hidden; }
+.upload-bar i { display: block; height: 100%; width: 30%; background: var(--accent); animation: slide 1.1s ease-in-out infinite; }
+@keyframes slide { from { transform: translateX(-100%); } to { transform: translateX(340%); } }
+.added-thumb { width: 120px; height: 170px; border-radius: var(--r-md); margin: 0 20px; box-shadow: 0 0 0 2px var(--accent), 0 20px 50px -20px var(--accent-glow); }
+
+/* profile */
+.profile-id .mono { word-break: break-all; }
+.profile-actions .btn { flex: 1; }
