@@ -1,6 +1,6 @@
 # PostSet: Product Requirements Document
 
-IST300 Prompts to Products · CP-M2 · Capstone repo: `arsareen/postset`
+IST300 Prompts to Products · CP-M2 · Capstone repo: `arsareen/postset---capstone`
 
 ---
 
@@ -29,7 +29,7 @@ The test is that you could screen record someone doing this end to end without e
 
 ## 4. In scope: the MVP being built this semester
 
-This is what gets built in `arsareen/postset` this fall, directed by the agent, with commit history to show it. It maps to the Must band of the backlog: stories 1, 6, and 7.
+This is what gets built in `arsareen/postset---capstone` this fall, directed by the agent, with commit history to show it. It maps to the Must band of the backlog: stories 1, 6, and 7.
 
 A user can:
 
