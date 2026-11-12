@@ -30,11 +30,23 @@ cd postset---capstone
 ```
 cp .env.example .env
 ```
-Open `.env` and fill in both values from **Project Settings → API**. Use the anon (publishable) key, never the service_role (secret) key. Then:
+Open `.env` (on a Mac: `open -e .env`) and replace both placeholders. Both values are in the Supabase dashboard under **Project Settings → Data API** and **Project Settings → API Keys**, or behind the **Connect** button at the top.
+
+| Variable | Use | Not this |
+|---|---|---|
+| `SUPABASE_URL` | The **Project URL**: `https://` + your project ID + `.supabase.co`, with nothing after it | The dashboard address in your browser, or a URL ending in `/rest/v1/` |
+| `SUPABASE_ANON_KEY` | The **Publishable** key (`sb_publishable_…`), or under Legacy API keys the **anon public** key | The **Secret** key (`sb_secret_…`) or **service_role** key: it skips every access rule |
+
+`.env` should end up as two lines, with no quotes or spaces:
+```
+SUPABASE_URL=https://abcdefghijklmnopqrst.supabase.co
+SUPABASE_ANON_KEY=sb_publishable_...
+```
+Save it, then run:
 ```
 node scripts/write-config.mjs
 ```
-This writes `src/config.js`, which the browser reads. `.env` and `src/config.js` are both gitignored, so check `git status` never lists them.
+It should print `Wrote src/config.js`; if a value is the wrong kind, it says which and what to use instead. `src/config.js` is what the browser reads. `.env` and `src/config.js` are both gitignored, so check `git status` never lists them.
 
 **4. Start the app**
 ```

@@ -38,7 +38,30 @@ if (/service_role|^sb_secret_/.test(env.SUPABASE_ANON_KEY)) {
   process.exit(1);
 }
 
+// The Project URL is just https://<project id>.supabase.co. Supabase also
+// shows longer addresses (…/rest/v1/) and the dashboard has its own; the app
+// adds the paths itself, so anything after the domain breaks every request.
+let url;
+try {
+  url = new URL(env.SUPABASE_URL);
+} catch {
+  console.error('SUPABASE_URL isn’t a web address. It should look like https://abcdefghijklmnopqrst.supabase.co');
+  process.exit(1);
+}
+if (/(^|\.)supabase\.com$/.test(url.hostname)) {
+  console.error('SUPABASE_URL is the dashboard address. Use the Project URL instead: https://<project id>.supabase.co ' +
+    '(Project Settings → Data API, or the Connect button).');
+  process.exit(1);
+}
+if (url.protocol !== 'https:') {
+  console.error('SUPABASE_URL must start with https://');
+  process.exit(1);
+}
+if (url.pathname !== '/' || url.search) {
+  console.log('Note: using ' + url.origin + ' — the part after the domain (' + url.pathname + url.search + ') isn’t needed, so it was left out.');
+}
+
 const out = '// Written by scripts/write-config.mjs from .env. Not committed.\n' +
-  'window.POSTSET_CONFIG = ' + JSON.stringify({ url: env.SUPABASE_URL.replace(/\/+$/, ''), anonKey: env.SUPABASE_ANON_KEY }, null, 2) + ';\n';
+  'window.POSTSET_CONFIG = ' + JSON.stringify({ url: url.origin, anonKey: env.SUPABASE_ANON_KEY }, null, 2) + ';\n';
 writeFileSync(join(root, 'src', 'config.js'), out);
 console.log('Wrote src/config.js');
