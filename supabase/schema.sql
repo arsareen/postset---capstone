@@ -149,6 +149,34 @@ drop policy if exists "Uploaders delete their own clips" on public.clips;
 create policy "Uploaders delete their own clips"
   on public.clips for delete to authenticated using (uploaded_by = auth.uid());
 
+-- ---------- songs with no clips left ----------
+-- A song a user added exists only because a clip was tagged to it. When the
+-- last clip leaves it (retagged to another song, or deleted), the song goes
+-- too, so mistyped titles and old ID tags don't stay on the setlist with 0.
+-- Songs with no creator (a setlist entered up front) always stay.
+create or replace function public.drop_song_if_empty()
+returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if tg_op = 'DELETE' or new.song_id is distinct from old.song_id then
+    delete from public.setlist_songs s
+     where s.id = old.song_id
+       and s.created_by is not null
+       and not exists (select 1 from public.clips c where c.song_id = old.song_id);
+  end if;
+  return null;
+end $$;
+
+drop trigger if exists clips_drop_song_if_empty on public.clips;
+create trigger clips_drop_song_if_empty
+  after update of song_id or delete on public.clips
+  for each row execute function public.drop_song_if_empty();
+
+-- One-time tidy for songs emptied before this rule existed. Safe to re-run.
+delete from public.setlist_songs s
+ where s.created_by is not null
+   and not exists (select 1 from public.clips c where c.song_id = s.id);
+
 -- ---------- video storage ----------
 -- Private bucket, 50 MB per file: videos and their JPEG still frames. Files
 -- live in a folder named after the uploader's user id, and only they can add
