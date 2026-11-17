@@ -66,12 +66,27 @@ Open **http://localhost:8000**. Leave that terminal open while you use the app; 
 - *"Confirm your email first"*: turn off Confirm email (step 2.4), or open the link in the email.
 - Nothing loads after a week of not using it: Supabase pauses free projects. Open the dashboard and restore the project.
 
+## Run the tests
+
+```
+node tests/run.mjs
+```
+
+You need Node 22 or newer and Google Chrome. There's nothing to install, and you don't need `.env` or a Supabase project: the tests replace Supabase with a fake (`tests/fake-supabase.js`) that keeps a small database in the browser and follows the same rules as `supabase/schema.sql`. Each test starts with an empty database and a fresh browser.
+
+- `node tests/run.mjs upload` runs only the tests whose name contains "upload".
+- `SHOW=1 node tests/run.mjs` opens a visible Chrome window so you can watch.
+- A failing test saves a screenshot to `tests/screenshots/`.
+
+Tests live in `tests/*.test.mjs`. `tests/smoke.test.mjs` is the example to copy.
+
 ## What's in here
 
 - `src/`: the app. Every screen needs sign-in (`signin.html`).
   - `index.html` Shows · `event.html` one show's setlist · `song.html` every angle of a song · `add.html` add or retag a clip · `search.html` · `profile.html`
   - `clips-store.js`: the only code that reads or writes the database. `app.js`: helpers every screen shares.
 - `supabase/schema.sql`: tables, access rules, the `add_song` function and the video bucket.
+- `tests/`: `run.mjs` (the test runner), `fake-supabase.js`, `fixtures/` (a 2-second video and a still), and the `*.test.mjs` files.
 - `scripts/`: `write-config.mjs` (`.env` → `src/config.js`) and `serve.py` (local server).
 - `docs/design/prototype/`: the Lab 4 clickable prototype these screens were built from, with its sample data.
 - `docs/`: concept brief, PRD, architecture, backlog, decisions, and Discovery logs.
